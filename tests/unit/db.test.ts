@@ -153,9 +153,7 @@ describe("DbClient — CollectionClient", () => {
       expect(await col.count()).toBe(0);
     });
 
-    // TODO: This test exposes a Dexie limitation - can't add collections after DB is open
-    // This is a known issue tracked in the repository
-    it.skip("should not clear other collections", async () => {
+    it("should not clear other collections", async () => {
       // Create collections sequentially to avoid Dexie race condition
       const tasks = db.collection<{ done: boolean }>("cleartest2");
       await tasks.insertMany([{ done: true }, { done: false }]);
